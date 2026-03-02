@@ -1,0 +1,46 @@
+.info-card {
+  font-family: "Microsoft Yahei", sans-serif;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  background-color: #fafafa;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px dashed #eee; /* 虚线分隔，更轻盈 */
+  padding-bottom: 12px;
+}
+
+.info-label {
+  width: 30%; /* 第一列占30%宽度 */
+  color: #666;
+  font-size: 14px;
+}
+
+.info-value {
+  width: 40%; /* 第二列占40%宽度 */
+  color: #333;
+  font-size: 14px;
+}
+
+.info-extra {
+  width: 30%; /* 第三列占30%宽度 */
+  text-align: right; /* 可选：让内容居右 */
+}

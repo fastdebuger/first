@@ -1,0 +1,58 @@
+export const configColumns = [
+  {
+    title: "compinfo.id",
+    subTitle: "自增主键",
+    dataIndex: "id",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "compinfo.profit_center_code",
+    subTitle: "利润中心编码",
+    dataIndex: "profit_center_code",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "compinfo.profit_wbs_code",
+    subTitle: "利润中心名称",
+    dataIndex: "profit_wbs_code",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "compinfo.profit_wbs_code",
+    subTitle: "利润中心名称",
+    dataIndex: "profit_wbs_name",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "compinfo.inOrOut",
+    subTitle: "境内/外",
+    dataIndex: "inOrOut",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "compinfo.profit_belong_wbs_code",
+    subTitle: "所属分公司",
+    dataIndex: "profit_belong_wbs_code",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "compinfo.profit_belong_wbs_code",
+    subTitle: "所属分公司",
+    dataIndex: "profit_belong_wbs_name",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "compinfo.profit_remark",
+    subTitle: "备注",
+    dataIndex: "profit_remark",
+    width: 160,
+    align: "center",
+  },
+];

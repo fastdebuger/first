@@ -1,0 +1,84 @@
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.scrollContainer {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 20px;
+  background-color: #f0f2f5;
+  box-sizing: border-box;
+}
+
+.pdfContainer {
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pdfPageContainer {
+  position: relative;
+  margin: 0 auto 16px auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: white;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.pdfCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+.pageNumber {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  color: #666;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.emptyContainer {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorContainer {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tipsAlert {
+  max-width: 500px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.retryButton {
+  margin: 16px 0;
+}
+
+.spin {
+  font-size: 14px;
+  color: #1890ff;
+  margin: 100px auto;
+}

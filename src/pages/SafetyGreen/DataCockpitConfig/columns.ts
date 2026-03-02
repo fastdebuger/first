@@ -1,0 +1,51 @@
+export const configColumns = [
+  {
+    title: "annualConfig.coefficient",
+    subTitle: "系数",
+    dataIndex: "coefficient",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "annualConfig.headcount",
+    subTitle: "总人数",
+    dataIndex: "headcount",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "annualConfig.man_hour",
+    subTitle: "时间",
+    dataIndex: "man_hour",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "annualConfig.id",
+    subTitle: "序号",
+    dataIndex: "id",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "annualConfig.days",
+    subTitle: "天",
+    dataIndex: "days",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "annualConfig.hour",
+    subTitle: "时",
+    dataIndex: "hour",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "annualConfig.start_date",
+    subTitle: "开始时间",
+    dataIndex: "start_date",
+    width: 160,
+    align: "center",
+  },
+];

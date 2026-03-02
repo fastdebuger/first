@@ -1,0 +1,214 @@
+import React, { useEffect, useState } from "react";
+import { Button, message, Modal, Space } from "antd";
+import { connect } from "umi";
+import { BasicTableColumns, SingleTable } from "yayang-ui";
+import { ErrorCode } from "@/common/const";
+import { hasPermission } from "@/utils/authority";
+
+import TechnologyBaseDataEdit from "../Edit";
+import { configColumns } from "../columns";
+import { getUrlCrypto } from "@/components/HuaWeiOBSUploadSingleFile";
+
+const { CrudQueryDetailDrawer } = SingleTable;
+
+/**
+ * 施工组织设计审批详情
+ * @param props
+ * @constructor
+ */
+const TechnologyBaseDataDetail: React.FC<any> = (props) => {
+  const { open, onClose, authority, selectedRecord, callbackSuccess, dispatch } = props;
+  const [editVisible, setEditVisible] = useState(false);
+  const [delVisible, setDelVisible] = useState(false);
+
+  useEffect(() => {
+    if (dispatch) {
+      // dispatch({
+      //   type: '',
+      //   payload: {
+      //
+      //   }
+      // })
+    }
+  }, []);
+
+  const getTableColumns = () => {
+    const cols = new BasicTableColumns(configColumns);
+    cols.initTableColumns([
+      'out_info_dep_name',
+      'contract_out_name',
+      'contract_say_price',
+      {
+        title: '施工组织设计',
+        dataIndex: 'file_url1',
+        subTitle: '施工组织设计',
+        align: 'center',
+        width: 160,
+        render: (text: any) => {
+          if (text) {
+            return (
+              <Button
+                onClick={() => window.open(getUrlCrypto(text))}
+                size="small"
+                type="link"
+              >
+                下载文件
+              </Button>
+            );
+          }
+          return '暂无文件';
+        },
+      },
+      {
+        title: '项目审核意见',
+        dataIndex: 'file_url2',
+        subTitle: '项目审核意见',
+        align: 'center',
+        width: 160,
+        render: (text: any) => {
+          if (text) {
+            return (
+              <Button
+                onClick={() => window.open(getUrlCrypto(text))}
+                size="small"
+                type="link"
+              >
+                下载文件
+              </Button>
+            );
+          }
+          return '暂无文件';
+        },
+      },
+      {
+        title: '分公司审核意见',
+        dataIndex: 'file_url3',
+        subTitle: '分公司审核意见',
+        align: 'center',
+        width: 160,
+        render: (text: any) => {
+          if (text) {
+            return (
+              <Button
+                onClick={() => window.open(getUrlCrypto(text))}
+                size="small"
+                type="link"
+              >
+                下载文件
+              </Button>
+            );
+          }
+          return '暂无文件';
+        },
+      },
+      {
+        title: '其他',
+        dataIndex: 'file_url4',
+        subTitle: '其他',
+        align: 'center',
+        width: 160,
+        render: (text: any) => {
+          if (text) {
+            return (
+              <Button
+                onClick={() => window.open(getUrlCrypto(text))}
+                size="small"
+                type="link"
+              >
+                下载文件
+              </Button>
+            );
+          }
+          return '暂无文件';
+        },
+      },
+      'status_str',
+      'form_maker_name',
+      'form_make_time_str',
+      'contract_say_price_str',
+    ]);
+    return cols.getNeedColumns();
+  };
+  const renderButtonToolbar = () => {
+    return [
+      <Button style={{display: hasPermission(authority, '编辑') ? 'inline' : 'none'}} type={"primary"} onClick={() => setEditVisible(true)}>
+        编辑
+      </Button>,
+      <Button style={{display: hasPermission(authority, '删除') ? 'inline' : 'none'}} danger type={"primary"} onClick={() => setDelVisible(true)}>
+        删除
+      </Button>,
+    ];
+  };
+
+  const handleDel = () => {
+    dispatch({
+      type: "technologyBaseData/deleteTechnologyBaseData",
+      payload: {
+        id: selectedRecord.id,
+      },
+      callback: (res: any) => {
+        if (res.errCode === ErrorCode.ErrOk) {
+          message.success("删除成功");
+          setTimeout(() => {
+            if (onClose) onClose();
+            if (callbackSuccess) callbackSuccess();
+          }, 1000);
+        }
+      },
+    });
+  };
+
+  return (
+    <>
+      <CrudQueryDetailDrawer
+        rowKey="id"
+        title={"施工组织设计审批"}
+        columns={getTableColumns()}
+        open={open}
+        onClose={onClose}
+        selectedRecord={selectedRecord}
+        buttonToolbar={renderButtonToolbar}
+      >
+        {/* <Tabs defaultActiveKey="1">
+          <Tabs.TabPane tab="关联业务清单" key="1">
+            自行追加与设备计费科目相关的业务清单
+          </Tabs.TabPane>
+        </Tabs> */}
+      </CrudQueryDetailDrawer>
+      {editVisible && (
+        <TechnologyBaseDataEdit
+          visible={editVisible}
+          selectedRecord={selectedRecord}
+          onCancel={() => setEditVisible(false)}
+          callbackSuccess={() => {
+            setEditVisible(false);
+            if (onClose) onClose();
+            if (callbackSuccess) callbackSuccess();
+          }}
+        />
+      )}
+      <Modal
+        title="删除数据"
+        footer={
+          <Space>
+            <Button onClick={() => setDelVisible(false)}>我再想想</Button>
+            <Button type={"primary"} danger onClick={() => handleDel()}>
+              确认删除
+            </Button>
+          </Space>
+        }
+        open={delVisible}
+        onOk={handleDel}
+        onCancel={() => setDelVisible(false)}
+      >
+        <p>是否删除当前的数据: {selectedRecord["id"]}</p>
+      </Modal>
+    </>
+  );
+};
+
+export default connect()(TechnologyBaseDataDetail);
+
+
+
+

@@ -1,0 +1,15 @@
+export default {
+  "compinfo.id": "id",
+  "compinfo.user_code": "员工编号",
+  "compinfo.lecturer_type": "讲师类型（1内部讲师2外部讲师）",
+  "compinfo.lecturer_level": "讲师级别",
+  "compinfo.is_use": "讲师状态(0 禁用，1 启用)",
+  "compinfo.create_ts": "创建时间",
+  "compinfo.create_tz": "创建时区",
+  "compinfo.create_user_code": "创建人编码",
+  "compinfo.create_user_name": "创建人名称",
+  "compinfo.modify_ts": "修改时间",
+  "compinfo.modify_tz": "修改时区",
+  "compinfo.modify_user_code": "修改人编码",
+  "compinfo.modify_user_name": "修改人名称",
+};

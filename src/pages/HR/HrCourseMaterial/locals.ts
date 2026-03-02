@@ -1,0 +1,15 @@
+export default {
+  "compinfo.id": "id",
+  "compinfo.course_id": "培训课程",
+  "compinfo.material_name": "资料名称",
+  "compinfo.material_url": "资料地址",
+  "compinfo.material_type": "资料类型",
+  "compinfo.create_ts": "创建时间",
+  "compinfo.create_tz": "创建时区",
+  "compinfo.create_user_code": "创建人编码",
+  "compinfo.create_user_name": "创建人名称",
+  "compinfo.modify_ts": "修改时间",
+  "compinfo.modify_tz": "修改时区",
+  "compinfo.modify_user_code": "修改人编码",
+  "compinfo.modify_user_name": "修改人名称",
+};

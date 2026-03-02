@@ -1,0 +1,20 @@
+export default {
+  'steel.steelprefabrication.page.title': '钢结构预留',
+
+  'steel.id': '自增主键',
+  'steel.dev_code': '装置名称',
+  'steel.dev_name': '装置名称',
+  'steel.unit_project_code': '单位工程名称',
+  'steel.unit_project_name': '单位工程名称',
+  'steel.unit_code': '单元名称',
+  'steel.unit_name': '单元名称',
+  'steel.structure_code': '钢构架编号',
+  'steel.model_id': '模型id',
+  'steel.steel_member_code': '钢构件编号',
+  'steel.unique_id': '3D模型唯一标识',
+  'steel.reserve_user_code': '预留人编码',
+  'steel.reserve_user_name': '预留人姓名',
+  'steel.ts': '时间戳',
+  'steel.tz': '时区',
+  'steel.remark': '备注',
+};

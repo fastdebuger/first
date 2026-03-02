@@ -1,0 +1,110 @@
+{
+  "name": "pc-cpecc-first-compinfo",
+  "version": "4.5.0",
+  "private": true,
+  "description": "An out-of-box UI solution for enterprise applications",
+  "scripts": {
+    "analyze": "cross-env ANALYZE=1 umi build",
+    "deploy": "npm run site && npm run gh-pages",
+    "prestart": "",
+    "dev": "npm run lint:style && npm run lint:js:strict && cross-env umi dev",
+    "docker-hub:build": "docker build  -f Dockerfile.hub -t  ant-design-pro ./",
+    "docker-prod:build": "docker-compose -f ./docker/docker-compose.yml build",
+    "docker-prod:dev": "docker-compose -f ./docker/docker-compose.yml up",
+    "docker:build": "docker-compose -f ./docker/docker-compose.dev.yml build",
+    "docker:dev": "docker-compose -f ./docker/docker-compose.dev.yml up",
+    "docker:push": "npm run docker-hub:build && npm run docker:tag && docker push antdesign/ant-design-pro",
+    "docker:tag": "docker tag ant-design-pro antdesign/ant-design-pro",
+    "fetch:blocks": "pro fetch-blocks && npm run prettier",
+    "gh-pages": "gh-pages -d dist",
+    "i18n-remove": "pro i18n-remove --locale=zh-CN --write",
+    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
+    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src && npm run lint:style",
+    "precommit": "lint-staged",
+    "prettier": "prettier -c --write \"src/**/*\"",
+    "site": "npm run fetch:blocks && npm run build",
+    "start:dev": "cross-env REACT_APP_ENV=dev MOCK=none UMI_ENV=dev umi dev",
+    "start:no-mock": "cross-env MOCK=none UMI_ENV=dev umi dev",
+    "start:no-ui": "cross-env UMI_UI=none UMI_ENV=dev umi dev",
+    "start:pre": "cross-env REACT_APP_ENV=pre UMI_ENV=dev umi dev",
+    "start:test": "set NODE_OPTIONS=--openssl-legacy-provider&&cross-env REACT_APP_ENV=test MOCK=none UMI_ENV=test umi dev",
+    "start:pro": "set NODE_OPTIONS=--openssl-legacy-provider&&cross-env REACT_APP_ENV=pro MOCK=none UMI_ENV=pro umi dev",
+    "pretest": "node ./tests/beforeTest",
+    "test": "umi test",
+    "test:all": "node ./tests/run-tests.js",
+    "test:component": "umi test ./src/components",
+    "tsc": "tsc --noEmit",
+    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src ./config",
+    "lint:js:strict": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty --max-warnings=0 ./src ./config",
+    "lint:style": "stylelint \"src/**/*.less\" --syntax less",
+    "lint:prettier": "prettier --check \"src/**/*\" --end-of-line auto",
+    "typecheck": "tsc --noEmit",
+    "lint": "umi g tmp && run-p lint:js lint:style lint:prettier",
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider&&cross-env UMI_ENV=dev umi dev",
+    "build": "cross-env umi build",
+    "build:test": "cross-env REACT_APP_ENV=test UMI_ENV=test NODE_ENV=production umi build",
+    "build:pro": "cross-env REACT_APP_ENV=pro UMI_ENV=pro NODE_ENV=production umi build",
+    "lint:lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 10"
+  ],
+  "devDependencies": {
+    "@yayang/components": "workspace:^",
+    "@yayang/constants": "workspace:^",
+    "@yayang/http": "workspace:^"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "checkFiles": [
+    "src/**/*.js*",
+    "src/**/*.ts*",
+    "src/**/*.less",
+    "config/**/*.js*",
+    "scripts/**/*.js"
+  ],
+  "create-umi": {
+    "ignoreScript": [
+      "docker*",
+      "functions*",
+      "site",
+      "generateMock"
+    ],
+    "ignoreDependencies": [
+      "netlify*",
+      "serverless"
+    ],
+    "ignore": [
+      ".dockerignore",
+      ".git",
+      ".github",
+      ".gitpod.yml",
+      "CODE_OF_CONDUCT.md",
+      "Dockerfile",
+      "Dockerfile.*",
+      "lambda",
+      "LICENSE",
+      "netlify.toml",
+      "README.*.md",
+      "azure-pipelines.yml",
+      "docker",
+      "CNAME",
+      "create-umi"
+    ]
+  },
+  "dependencies": {
+    "@onlyoffice/document-editor-react": "^2.0.0",
+    "exceljs": "4.3.0",
+    "mathjs": "11.11.2",
+    "qcx4-components": "4.1.22-material-filter"
+  }
+}

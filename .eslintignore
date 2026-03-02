@@ -1,0 +1,17 @@
+/lambda/
+/scripts
+.history
+
+# 排除依赖
+node_modules/
+# 排除构建产物
+dist/
+build/
+.umi/
+# 排除配置文件和临时文件
+.env*
+.eslintcache
+*.config.js
+# 排除测试报告、日志等
+coverage/
+logs/

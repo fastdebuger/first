@@ -1,0 +1,15 @@
+export default {
+  "compinfo.id": "id",
+  "compinfo.courseware_name": "课件名称",
+  "compinfo.courseware_url": "课件地址",
+  "compinfo.courseware_type": "课件类型",
+  "compinfo.is_public": "是否公开",
+  "compinfo.create_ts": "创建时间",
+  "compinfo.create_tz": "创建时区",
+  "compinfo.create_user_code": "创建人编码",
+  "compinfo.create_user_name": "创建人名称",
+  "compinfo.modify_ts": "修改时间",
+  "compinfo.modify_tz": "修改时区",
+  "compinfo.modify_user_code": "修改人编码",
+  "compinfo.modify_user_name": "修改人名称",
+};

@@ -1,0 +1,22 @@
+export default {
+  'steel.steelmember.page.title': '钢构件台账',
+
+  'steel.steel_member_code': '钢构件编号',
+  'steel.steel_member_name': '钢构件名称',
+  'steel.dev_code': '装置编码',
+  'steel.unit_project_code': '单位工程编号',
+  'steel.unit_code': '单元编号',
+  'steel.structure_code': '构架编号',
+  'steel.steel_member_type': '钢结构类型',
+  'steel.steels_member_cls_code': '钢结构类别编码',
+  'steel.spec': '规格',
+  'steel.material': '材质',
+  'steel.unit_weight': '单重',
+  'steel.volume': '体积',
+  'steel.pre_obs_code': '预分配安装队伍编码',
+  'steel.obs_name': '预分配安装队伍名字',
+  'steel.wbs_name': '装置名称',
+  'steel.structure_caption': '构架描述',
+  'steel.steel_member_type_name': '钢结构类型名称',
+  'steel.unique_id': '模型唯一标识',
+};

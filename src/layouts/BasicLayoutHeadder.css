@@ -1,0 +1,88 @@
+
+.header {
+  background: linear-gradient(90deg, #c41e3a 0%, #e53935 100%);
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.headerPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0 50 L25 25 L50 50 L75 25 L100 50' stroke='white' fill='none' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 200px;
+}
+
+.logo {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 1;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 20px;
+  padding: 4px 12px;
+  width: 280px;
+}
+
+.searchBox input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+}
+
+.searchBtn {
+  background: #c41e3a;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 4px 16px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.headerIcons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+}
+
+.headerIcon {
+  cursor: pointer;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff4d4f;
+  color: white;
+  font-size: 10px;
+  padding: 0 4px;
+  border-radius: 10px;
+  min-width: 16px;
+  text-align: center;
+}

@@ -1,0 +1,51 @@
+export const configColumns = [
+  {
+    title: "compinfo.id",
+    subTitle: "id",
+    dataIndex: "id",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "compinfo.cls_code",
+    subTitle: "品名编码",
+    dataIndex: "cls_code",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "compinfo.form_maker_code",
+    subTitle: "制单人编码",
+    dataIndex: "form_maker_code",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "compinfo.form_maker_name",
+    subTitle: "制单人名称",
+    dataIndex: "form_maker_name",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "compinfo.form_make_time",
+    subTitle: "制单时间",
+    dataIndex: "form_make_time",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "compinfo.form_make_time",
+    subTitle: "制单时间",
+    dataIndex: "form_make_time_str",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "compinfo.form_make_tz",
+    subTitle: "制单时区",
+    dataIndex: "form_make_tz",
+    width: 160,
+    align: "center",
+  },
+];

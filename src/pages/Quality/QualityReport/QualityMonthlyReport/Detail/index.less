@@ -1,0 +1,123 @@
+// 质量月报详情 - Word 文档式单页展示
+.qualityMonthlyReportModal {
+  :global(.ant-modal-body) {
+    padding: 0;
+  }
+}
+
+.qualityMonthlyReportDetailScope {
+  .wordDoc {
+    background: #fff;
+    padding: 32px 48px 48px;
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  // 封面
+  .docHeader {
+    text-align: center;
+    padding: 24px 0 32px;
+    border-bottom: none;
+
+    .companyName {
+      font-size: 28px;
+      font-weight: 600;
+      color: #000;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .reportTitle {
+      font-size: 32px;
+      font-weight: 600;
+      color: #000;
+      letter-spacing: 12px;
+      margin-bottom: 16px;
+    }
+
+    .monthWrap {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    .signArea {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      font-size: 16px;
+      color: #333;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: left;
+    }
+  }
+
+  // 章节
+  .section {
+    margin-bottom: 28px;
+
+    .sectionTitle {
+      font-size: 18px !important;
+      font-weight: 600 !important;
+      color: #000 !important;
+      margin-bottom: 12px !important;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .hint {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .block {
+      margin-bottom: 12px;
+    }
+
+    .subSection {
+      margin-top: 16px;
+      margin-bottom: 12px;
+
+      :global(.ant-typography) {
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  // 目录
+  .tocList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    line-height: 2;
+
+    li {
+      padding-left: 8px;
+    }
+  }
+
+  // 附表列表（五附表点击展示）
+  .appendixList {
+    margin-top: 8px;
+  }
+
+  .appendixItem {
+    margin-bottom: 6px;
+  }
+
+  // 查看链接按钮
+  .linkBtn {
+    padding-left: 0 !important;
+    font-size: 16px !important;
+  }
+}

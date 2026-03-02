@@ -1,0 +1,71 @@
+export const configColumns = [
+  {
+    title: "material.module.number",
+    subTitle: "模块号",
+    dataIndex: "func_code",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "material.document.number.segment.1",
+    subTitle: "单据号段1",
+    dataIndex: "sec_part1",
+    width: 160,
+    align: "center",
+  },
+  {
+    title: "material.document.number.segment.2",
+    subTitle: "单据号段2",
+    dataIndex: "sec_part2",
+    width: 160,
+    align: "center",
+  },  {
+    title: "material.document.number.segment.3",
+    subTitle: "单据号段3",
+    dataIndex: "sec_part3",
+    width: 160,
+    align: "center",
+  },  {
+    title: "material.document.number.segment.4",
+    subTitle: "单据号段4",
+    dataIndex: "sec_part4",
+    width: 160,
+    align: "center",
+  },  {
+    title: "material.document.number.segment.5",
+    subTitle: "单据号段5",
+    dataIndex: "sec_part5",
+    width: 160,
+    align: "center",
+  },  {
+    title: "material.document.number.segment.6",
+    subTitle: "单据号段6",
+    dataIndex: "sec_part6",
+    width: 160,
+    align: "center",
+  },  {
+    title: "material.document.number.segment.7",
+    subTitle: "单据号段7",
+    dataIndex: "sec_part7",
+    width: 160,
+    align: "center",
+  },  {
+    title: "material.document.number.segment.8",
+    subTitle: "单据号段8",
+    dataIndex: "sec_part8",
+    width: 160,
+    align: "center",
+  },  {
+    title: "material.document.number.segment.9",
+    subTitle: "单据号段9",
+    dataIndex: "sec_part9",
+    width: 160,
+    align: "center",
+  },  {
+    title: "material.serial.number.digits",
+    subTitle: "流水号位数",
+    dataIndex: "serial_no_len",
+    width: 160,
+    align: "center",
+  },
+];

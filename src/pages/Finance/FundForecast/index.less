@@ -1,0 +1,232 @@
+.fund-forecast-container {
+  padding: 20px;
+  background: #fff;
+  height: 100%;
+  overflow: hidden;
+}
+
+.fund-forecast-tree {
+  padding: 16px;
+  height: calc(100vh - 146px);
+  overflow-y: auto;
+
+  // 隐藏滚动条但保持滚动功能
+  scrollbar-width: thin; // Firefox
+  scrollbar-color: transparent transparent; // Firefox
+
+  // Chrome/Safari/Edge
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+.fund-forecast-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.fund-forecast-table {
+  .fund-forecast-table-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: #262626;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ant-table-title {
+    padding: 0 0 16px 0 !important;
+    border: none !important;
+  }
+}
+
+// 所有样式都严格限制在 .fund-forecast-table 作用域内，确保不会影响其他页面的表格
+.fund-forecast-table {
+  // 表头单元格基础样式（仅作用于当前表格）
+  .ant-table-thead > tr > th {
+    text-align: center;
+    font-weight: 500;
+    padding: 8px 4px;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  // 表体单元格基础样式（仅作用于当前表格）
+  .ant-table-tbody > tr > td {
+    text-align: center;
+    padding: 8px 4px;
+  }
+
+  // 确保表格容器可以滚动（仅作用于当前表格）
+  .ant-table-body {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+  }
+
+  // 表格容器滚动（仅作用于当前表格）
+  .ant-table-container {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+  }
+
+  // 蓝色区域 - 项目、资金存量（严格限制在当前表格作用域内）
+  .ant-table-thead > tr > th.blue-header-cell,
+  .ant-table-thead tr th.blue-header-cell {
+    background-color: #8DB4E2 !important;
+    color: #000 !important;
+  }
+
+  // 黄色区域 - 表1-债权(客户)（严格限制在当前表格作用域内）
+  .ant-table-thead > tr > th.yellow-header-cell,
+  .ant-table-thead tr th.yellow-header-cell {
+    background-color: #FFFF00 !important;
+    color: #000 !important;
+  }
+
+  // 橙色区域 - 表2-债务(供应商)（严格限制在当前表格作用域内）
+  .ant-table-thead > tr > th.orange-header-cell,
+  .ant-table-thead tr th.orange-header-cell {
+    background-color: #FFC000 !important;
+    color: #000 !important;
+  }
+
+  // 绿色区域 - 净债权（严格限制在当前表格作用域内）
+  .ant-table-thead > tr > th.green-header-cell,
+  .ant-table-thead tr th.green-header-cell {
+    background-color: #92D050 !important;
+    color: #000 !important;
+  }
+
+  // 浅蓝色区域 - 内部贷款及上级拨入资金、利润中心编码（严格限制在当前表格作用域内）
+  .ant-table-thead > tr > th.light-blue-header-cell,
+  .ant-table-thead tr th.light-blue-header-cell {
+    background-color: #5B9BD5 !important;
+    color: #000 !important;
+  }
+
+  // 浅棕色/米色区域 - 基础资金动态余额（严格限制在当前表格作用域内）
+  .ant-table-thead > tr > th.beige-header-cell,
+  .ant-table-thead tr th.beige-header-cell {
+    background-color: #FDE9D9 !important;
+    color: #000 !important;
+  }
+
+  // 红色/粉色区域 - 远期资金动态余额（严格限制在当前表格作用域内）
+  .ant-table-thead > tr > th.red-header-cell,
+  .ant-table-thead tr th.red-header-cell {
+    background-color: #DA9694 !important;
+    color: #000 !important;
+  }
+
+  // 确保表头单元格的边框颜色与背景色协调（严格限制在当前表格作用域内）
+  .ant-table-thead > tr > th {
+    border-color: rgba(0, 0, 0, 0.06) !important;
+  }
+
+  // 处理固定列的情况（严格限制在当前表格作用域内）
+  .ant-table-header {
+    .ant-table-thead > tr > th.blue-header-cell,
+    .ant-table-thead tr th.blue-header-cell {
+      background-color: #8DB4E2 !important;
+      color: #000 !important;
+    }
+    .ant-table-thead > tr > th.yellow-header-cell,
+    .ant-table-thead tr th.yellow-header-cell {
+      background-color: #FFFF00 !important;
+      color: #000 !important;
+    }
+    .ant-table-thead > tr > th.orange-header-cell,
+    .ant-table-thead tr th.orange-header-cell {
+      background-color: #FFC000 !important;
+      color: #000 !important;
+    }
+    .ant-table-thead > tr > th.green-header-cell,
+    .ant-table-thead tr th.green-header-cell {
+      background-color: #92D050 !important;
+      color: #000 !important;
+    }
+    .ant-table-thead > tr > th.light-blue-header-cell,
+    .ant-table-thead tr th.light-blue-header-cell {
+      background-color: #5B9BD5 !important;
+      color: #000 !important;
+    }
+    .ant-table-thead > tr > th.beige-header-cell,
+    .ant-table-thead tr th.beige-header-cell {
+      background-color: #FDE9D9 !important;
+      color: #000 !important;
+    }
+    .ant-table-thead > tr > th.red-header-cell,
+    .ant-table-thead tr th.red-header-cell {
+      background-color: #DA9694 !important;
+      color: #000 !important;
+    }
+  }
+
+  // 合计行第一列 - 只设置第一列（项目列）的背景色
+  .ant-table-summary {
+    .fund-forecast-summary-label-cell {
+      // XX合计 - 绿色背景
+      &.fund-forecast-summary-total {
+        background-color: #92D050 !important;
+        color: #000 !important;
+      }
+
+      // 与业主、分包全部结算完 - 黄色背景
+      &.fund-forecast-summary-1 {
+        background-color: #FFFF00 !important;
+        color: #000 !important;
+      }
+
+      // 与业主、分包全部未结算完 - 黄色背景
+      &.fund-forecast-summary-2 {
+        background-color: #FFFF00 !important;
+        color: #000 !important;
+      }
+
+      // 与业主结算完,分包未结算完 - 黄色背景
+      &.fund-forecast-summary-3 {
+        background-color: #FFFF00 !important;
+        color: #000 !important;
+      }
+
+      // 与业主未结算完,分包结算完 - 黄色背景
+      &.fund-forecast-summary-4 {
+        background-color: #FFFF00 !important;
+        color: #000 !important;
+      }
+
+      // 在建工程未结算 - 黄色背景
+      &.fund-forecast-summary-5 {
+        background-color: #FFFF00 !important;
+        color: #000 !important;
+      }
+
+      // 其他 - 黄色背景
+      &.fund-forecast-summary-6 {
+        background-color: #FFFF00 !important;
+        color: #000 !important;
+      }
+    }
+  }
+}
+

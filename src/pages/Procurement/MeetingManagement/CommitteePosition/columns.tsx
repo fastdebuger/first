@@ -1,0 +1,73 @@
+export const configColumns = [
+    {
+      title: "compinfo.id",
+      subTitle: "主键 ID",
+      dataIndex: "id",
+      width: 160,
+      align: "center",
+    },
+    {
+      title: "compinfo.committeePositionDepCode",
+      subTitle: "项目部",
+      dataIndex: "dep_code",
+      width: 160,
+      align: "center",
+    },
+    {
+      title: "compinfo.committeePositionDepCode",
+      subTitle: "项目部",
+      dataIndex: "dep_name",
+      width: 160,
+      align: "center",
+    },
+    {
+      title: "compinfo.position_code",
+      subTitle: "职务编码",
+      dataIndex: "position_code",
+      width: 160,
+      align: "center",
+    },
+    {
+      title: "compinfo.position_name",
+      subTitle: "职务名称",
+      dataIndex: "position_name",
+      width: 160,
+      align: "center",
+    },
+    {
+      title: "compinfo.create_person",
+      subTitle: "制单人",
+      dataIndex: "create_person",
+      width: 160,
+      align: "center",
+    },
+    {
+      title: "compinfo.create_time",
+      subTitle: "制单时间",
+      dataIndex: "create_tima",
+      width: 160,
+      align: "center",
+    },
+    {
+      title: "compinfo.create_time",
+      subTitle: "制单时间",
+      dataIndex: "create_time_str",
+      width: 160,
+      align: "center",
+    },
+    {
+      title: "compinfo.isSecretary",
+      subTitle: "是否秘书职务 0 - 否 1 - 是",
+      dataIndex: "isSecretary",
+      width: 160,
+      align: "center",
+    },
+    {
+      title: "compinfo.isSecretary",
+      subTitle: "是否秘书职务 0 - 否 1 - 是",
+      dataIndex: "isSecretary_str",
+      width: 160,
+      align: "center",
+    },
+  ];
+  

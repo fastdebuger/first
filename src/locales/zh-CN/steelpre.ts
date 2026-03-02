@@ -1,0 +1,22 @@
+export default {
+  'steel.steelpre.page.title': '钢结构预制',
+
+  'steel.steel_member_code': '钢构件编号',
+  'steel.prefabricate_data': '预制日期',
+  'steel.prefabricate_user_code': '预制人编码',
+  'steel.prefabricate_user_name': '预制人姓名',
+  'steel.check_user_code': '质量检查人编码',
+  'steel.check_user_name': '质量检查人姓名',
+  'steel.check_date': '检查日期',
+  'steel.check_describe': '检查描述',
+  'steel.is_valid': '是否合格',
+  'steel.quality_form_no': '质量问题单号',
+  'steel.check_img1': '检查照片1',
+  'steel.check_img2': '检查照片2',
+  'steel.check_img3': '检查照片3',
+  'steel.dev_code': '装置编码(维修工单)',
+  'steel.wbs_name': '装置名称(维修工单)',
+  'steel.obs_code': '队伍编码(维修工单)',
+  'steel.obs_name': '队伍名称(维修工单)',
+  'steel.form_make_name': '项目部名称',
+};

@@ -1,0 +1,100 @@
+.main-userinfo {
+  height: calc(100vh - 64px);
+  background-color: #fff;
+  padding: 24px;
+  padding-bottom: 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  .tips {
+    font-size: 16px;
+    line-height: 24px;
+    color: #252D3D;
+    margin-bottom: 16px;
+    margin-top: 0;
+    font-weight: 500;
+  }
+
+  .user-avatar {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+
+    .avatar-box {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      line-height: 22px;
+      color: #252D3D;
+      font-weight: 500;
+
+      .avatar-tips {
+        width: 80px;
+        margin-right: 16px;
+        flex-shrink: 0;
+      }
+
+      :global(.ant-avatar) {
+        margin-right: 16px;
+      }
+    }
+  }
+
+  .radio-card {
+    font-size: 14px;
+    line-height: 22px;
+    color: #86909C;
+    height: 100%;
+
+    .radio-card-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+
+      .name {
+        width: 48px;
+        margin-right: 12px;
+        flex-shrink: 0;
+        color: #86909C;
+      }
+
+      > div:last-child {
+        flex: 1;
+        min-width: 0;
+      }
+    }
+
+    .radio-card-row:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .radio-box {
+      border-top: 1px solid #E5E6EB;
+      padding-top: 12px;
+      margin-top: 12px;
+
+      :global(.ant-radio-wrapper) {
+        font-size: 14px;
+        line-height: 22px;
+        color: #86909C;
+      }
+    }
+  }
+
+  :global(.ant-form-item) {
+    margin-bottom: 16px;
+  }
+
+  :global(.ant-form-item-label > label) {
+    color: #86909C;
+    font-weight: 400;
+  }
+
+  :global(.ant-input-disabled) {
+    color: #86909C;
+  }
+
+  :global(.ant-divider-vertical) {
+    margin: 0 12px;
+  }
+}
+

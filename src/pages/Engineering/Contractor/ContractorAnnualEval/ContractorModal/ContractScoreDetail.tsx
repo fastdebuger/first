@@ -1,0 +1,358 @@
+import React, { useEffect, useRef, useState, useMemo } from "react";
+import { configColumns } from "../columns";
+import { BasicFormColumns, BasicTaskForm } from "yayang-ui";
+import { useIntl, connect } from "umi";
+import { Spin, InputNumber, Drawer, Row, Form, Col, Tag, Card } from "antd";
+import DynamicTableForm, { DynamicFormColumn, GroupFieldConfig } from '@/components/DynamicTableForm';
+import useSysDict from '@/utils/useSysDict';
+import { StarOutlined } from "@ant-design/icons";
+
+import { contractInfoConfig, basicCols } from "../columns";
+import RenderContractorItem from "./RenderContractorItem";
+/**
+ * 编辑承包商年度评价基本信息
+ * @param props
+ * @constructor
+ */
+const ContractScoreDetail: React.FC<any> = (props) => {
+  const { dispatch, visible, onCancel, currentRecord, getInterfaceData } = props;
+  const { formatMessage } = useIntl();
+  const [basicData, setBasicData] = useState([])
+  const [performanceData, setPerformanceData] = useState<any>([]);
+  const [loading, setLoading] = useState(true)
+  const [form] = Form.useForm();
+  const basicRef: any = useRef();
+  const perfRef: any = useRef();
+  // 1. 添加总分状态
+  const [totalScore, setTotalScore] = useState<number>(0);
+  const [basicItems, setBasicItems] = useState<any[]>([]);
+  const [perfItems, setPerfItems] = useState<any[]>([]);
+  
+  // 获取系统字典配置的数据
+  const { configData } = useSysDict({
+    dispatch,
+    filter: [
+      {
+        "Key": "sys_type_code",
+        "Val": "'PROJECT_TYPE'",
+        "Operator": "in"
+      }
+    ]
+  })
+  // 业绩评价配置列
+  const performanceCols: DynamicFormColumn[] = [
+    { title: '序号', dataIndex: 'RowNumber', width: 80 },
+    { title: '评分标准', dataIndex: 'score_standard' },
+    { title: '分值', dataIndex: 'score_value', width: 80 },
+    {
+      title: '考核得分',
+      formField: {
+        name: (row: any) => `perf_${row.RowNumber}_score`,
+        type: 'custom',
+        rules: (row) => {
+          const rules = [];
+          // 只有正常得分项添加校验
+          if (row.score_value !== null) {
+            rules.push({ required: true, message: '请输入得分' });
+          }
+          return rules;
+        },
+        render: ({ row }) => {
+          if (!row.score_value) {
+            return <InputNumber disabled min={0} max={10} />
+          }
+          return <InputNumber disabled max={row.score_value} min={0} style={{ width: "100%" }} />
+        }
+      },
+    },
+    {
+      title: '扣分原因',
+      formField: {
+        name: (row: any) => `perf_${row.RowNumber}_reason`,
+        type: 'textarea',
+      },
+    },
+
+  ];
+  
+  // 计算总分的函数
+  const calculateTotalScore = () => {
+    let totalScore = 0;
+    if (performanceData.length > 0) {
+      const perfVals = perfRef.current?.getFieldsValue() || {};
+
+      // 构建扣分项 记录哪些行是扣分项（score_value === null）
+      const deductRowsMap: any = {};
+      performanceData.forEach((item: any) => {
+        if (item.score_value === null) {
+          deductRowsMap[item.RowNumber] = true;
+        }
+      });
+
+      // 遍历出来所有 perf__score 字段
+      Object.keys(perfVals).forEach(key => {
+        if (key.startsWith('perf_') && key.endsWith('_score')) {
+          // 提取需要的行号
+          const match = key.match(/perf_(\d+)_score/);
+          if (match) {
+            const rowNumber = match[1];
+            const score = perfVals[key];
+
+            if (score !== undefined && !isNaN(Number(score))) {
+              // 判断是否是扣分项
+              if (deductRowsMap[rowNumber]) {
+                // 扣分项：减去分数（负分）
+                totalScore -= Number(score);
+              } else {
+                // 正常得分项：加上分数
+                totalScore += Number(score);
+              }
+            }
+          }
+        }
+      });
+    }
+
+    return totalScore;
+  };
+  // 创建监听函数，当两个表单都变化时更新总得分
+  const updateTotalScore = () => {
+    setTimeout(() => {
+      const score = calculateTotalScore() || 0;
+      setTotalScore(score);
+    }, 0);
+  };
+
+  /**
+   *业绩评价分组字段配置 
+   * 添加小计和审核人的列配置
+   * 并遍历获取对应的得分字段值并累加计算得出分组小计值
+   */
+  const performanceGroupFields: GroupFieldConfig[] = [
+    {
+      title: '小计',
+      name: (groupName: string) => `group_${groupName}_subtotal`,
+      type: 'number',
+      width: 120,
+      rules: [{ required: true, message: '请输入小计' }],
+      insertIndex: 3,
+      // 小计为该分组内所有考核得分的总和
+      calculate: (formValues: Record<string, any>, groupRows: any[], groupName: string) => {
+        // 计算该分组内所有考核得分的总和
+        const total = groupRows.reduce((sum, row) => {
+          let score;
+          const scoreFieldName = `perf_${row.RowNumber}_score`;
+          // 如果后台返回的得分项为null，则得分为负数,拼接上-号
+          if (row.score_value === null) {
+            score = '-' + formValues[scoreFieldName]
+          } else {
+            score = formValues[scoreFieldName];
+          }
+          // 如果得分是数字，累加；否则忽略
+          if (score !== undefined && score !== null && !isNaN(Number(score))) {
+            return sum + Number(score);
+          }
+          return sum;
+        }, 0);
+
+        return total;
+      },
+      // 监听该分组内所有考核得分字段的变化
+      dependencies: (groupRows: any[]) => {
+        return groupRows.map(row => `perf_${row.RowNumber}_score`);
+      },
+    },
+    {
+      title: '审核人',
+      name: (groupName: string) => `group_${groupName}_assess_person`,
+      type: 'input',
+      width: 120,
+      rules: [{ required: true, message: '请输入审核人' }],
+      insertIndex: 8,
+    },
+  ];
+
+  // 初始化加载两个表单的数据
+  useEffect(() => {
+    if (dispatch) {
+      Promise.all([
+        // basicRef、perfRef两个表单的数据，以及查询出来评分表单的默认值
+        getInterfaceData('appraiseInfo/getBasicConfig'),
+        getInterfaceData('appraiseInfo/getPerformanceConfig'),
+        getInterfaceData('appraiseInfo/getScoreRecordInfo', { id: currentRecord?.id })
+      ]).then(([basicRes, perfRes, allFormRes]) => {
+        // 保存原始数据和明细数据，组件内部会自动构建 initialValues
+        setBasicData(basicRes || [])
+        setPerformanceData(perfRes || [])
+        setBasicItems(allFormRes?.basicItems || []);
+        setPerfItems(allFormRes?.performanceItems || []);
+        setLoading(false)
+
+      }).catch(() => {
+        setLoading(false)
+      })
+    }
+
+  }, []);
+
+  /**
+   * 表单列配置引用columns文件
+   * @returns 返回一个数组
+   */
+  const getFormColumns = () => {
+    const cols = new BasicFormColumns(configColumns)
+      .initFormColumns([
+        "annual_completed_amount",
+        "project_category",
+        "project_principal",
+      ])
+      .setFormColumnToInputNumber([
+        { value: 'annual_completed_amount', valueType: 'digit' },
+      ])
+      .setFormColumnToSelect([
+        { value: 'project_category', valueAlias: 'id', name: 'dict_name', valueType: 'select', data: (configData?.PROJECT_TYPE as any) || [] },
+      ])
+      .setFormColumnToSelfColSpan([
+        { value: 'annual_completed_amount', colSpan: 8, labelCol: { span: 12 }, wrapperCol: { span: 12 } },
+        { value: 'project_principal', colSpan: 8, labelCol: { span: 9 }, wrapperCol: { span: 17 } },
+      ])
+      .needToDisabled([
+        "annual_completed_amount",
+        "project_category",
+        "project_principal",
+      ])
+      .needToRules([
+        "annual_completed_amount",
+        "project_category",
+        "project_principal",
+      ])
+
+      .getNeedColumns();
+    cols.forEach(
+      (item: any) => (item.title = formatMessage({ id: item.title }))
+    );
+    return cols;
+  };
+
+  /**
+   * 初始化表单配置，将查询到的默认值放到初始化值配置对象中
+   */
+  const performanceDataMerge = useMemo(() => {
+    // 构建新的初始化值配置对象
+    const newInitValues: any = {
+      items: perfItems,
+      idFieldName: 'performance_id',
+      buildInitialValues: {
+        row: {
+          prefix: 'perf_',
+          idFieldName: 'performance_id',
+          sourceToSuffix: { assess_score: 'score', remark: 'reason' },
+        },
+        /**
+         * 根据名称对数据进行分组
+         */
+        groupBy: (r: any) => r.indicator_name,
+        groupFields: [
+          { sourceFieldName: 'subtotal', fieldName: (g: string) => `group_${g}_subtotal` },
+          { sourceFieldName: 'assess_person', fieldName: (g: string) => `group_${g}_assess_person` },
+        ],
+      },
+    };
+
+    // 更新总分计算函数
+    updateTotalScore();
+    return newInitValues;
+
+  }, [perfItems]);
+
+  return (
+    <Drawer
+      width='75%'
+      title={
+        <Row justify="space-between" align="middle" style={{ width: '100%' }}>
+          <Col>
+            共100分，得分： <Tag style={{ fontSize: '16px', padding: 4, borderRadius: 4 }}><StarOutlined /> {totalScore || 0} 分</Tag>
+          </Col>
+        </Row>
+      }
+      placement="right"
+      onClose={onCancel}
+      open={visible}
+    >
+      <Card title="合同信息" size="small" style={{ marginBottom: 16 }}>
+        <Row gutter={[16, 8]}>
+          {contractInfoConfig.map((item) => {
+            return (
+              <Col
+                span={8}
+              >
+                <RenderContractorItem
+                  label={item.label}
+                  value={currentRecord?.[item.key]}
+                  labelWidth={item.labelWidth}
+                />
+              </Col>
+            );
+          })}
+        </Row>
+      </Card>
+
+      <BasicTaskForm
+        initialValue={{
+          ...currentRecord
+        }}
+        form={form}
+        formColumns={getFormColumns()}
+        colSpan={8}
+        labelCol={{ span: 8 }}
+        labelAlign="left"
+      />
+      <Spin spinning={loading}>
+        {/* 动态表单：基本条件评价 */}
+        <DynamicTableForm
+          rows={basicData || []}
+          columns={basicCols}
+          cRef={basicRef}
+          disabled
+          title="基本条件评价"
+          // initialValues={initFormBasic()}
+          dataMerge={{
+            items: basicItems,
+            idFieldName: 'basic_id',
+            // 编辑页面不需要 mergeFields，因为列都是 formField，数据从 initialValues 读取
+            buildInitialValues: {
+              row: {
+                prefix: 'basic_',
+                idFieldName: 'basic_id',
+                sourceToSuffix: { is_satisfy: 'satisfied' },
+                valueTransform: (suffix, value) => (suffix === 'satisfied' ? String(value) : value),
+              },
+            },
+          }}
+        />
+        {/* 动态表单：业绩评价 */}
+        {performanceData.length > 0 &&
+          (
+            <DynamicTableForm
+              rows={performanceData || []}
+              columns={performanceCols}
+              cRef={perfRef}
+              disabled
+              title="业绩评价(项目部考核)"
+              groupBy={(r: any) => r.indicator_name}
+              showGroupAsLeft
+              groupTitleHeader={''}
+              groupFields={performanceGroupFields}
+              onValuesChange={updateTotalScore}
+              dataMerge={performanceDataMerge}
+            />
+          )
+        }
+
+      </Spin>
+    </Drawer>
+
+  );
+};
+
+export default connect()(ContractScoreDetail);

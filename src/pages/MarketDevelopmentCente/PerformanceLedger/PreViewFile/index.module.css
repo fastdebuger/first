@@ -1,0 +1,105 @@
+.previewContainer {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.imagePreviewContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.previewImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.officePreviewContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.officeWarning {
+  padding: 8px 16px;
+  background: #f0f9ff;
+  border-bottom: 1px solid #d9d9d9;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.warningAlert {
+  margin-bottom: 0;
+}
+
+.officeIframe {
+  width: 100%;
+  flex: 1;
+  border: 0;
+  min-height: 0; /* 重要：允许iframe压缩 */
+}
+
+.iframeOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 27px; /* 遮挡底部工具栏区域 */
+  background:#fff;
+  pointer-events: all; /* 不阻止iframe交互，只做视觉遮挡 */
+  z-index: 5;
+}
+
+.unsupportedContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.unsupportedIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: #c0c4cc;
+}
+
+.unsupportedText {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.previewModal :global(.ant-modal-body) {
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 70vh !important;
+}
+
+.modalContent {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.previewContent {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}

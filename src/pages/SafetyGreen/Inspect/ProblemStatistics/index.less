@@ -1,0 +1,107 @@
+.statistics-total-row {
+  background-color: #fffbe6;
+  font-weight: bold;
+}
+
+.ant-table-tbody > tr.statistics-total-row:hover > td {
+  background-color: #fffbe6;
+}
+
+// 主容器布局
+.problem-statistics-container {
+  padding: 24px;
+  background: #f0f2f5;
+  height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+}
+
+.problem-statistics-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+
+  .ant-card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 24px;
+  }
+}
+
+.problem-statistics-tabs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+
+  .ant-tabs-nav {
+    flex-shrink: 0;
+  }
+
+  .ant-tabs-content-holder {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .ant-tabs-content {
+    height: 100%;
+  }
+
+  .ant-tabs-tabpane {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+.problem-statistics-content {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+
+  // 自定义滚动条样式
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+
+    &:hover {
+      background: #a8a8a8;
+    }
+  }
+
+  > div {
+    min-height: min-content;
+
+    // 统计组件内部的Card
+    .ant-card {
+      margin-bottom: 0;
+      border: none;
+      box-shadow: none;
+
+      .ant-card-body {
+        padding: 0;
+      }
+    }
+
+    // 确保表格区域有足够的空间和底部间距
+    .ant-table-wrapper {
+      margin-top: 16px;
+      margin-bottom: 24px;
+    }
+  }
+}
+
+

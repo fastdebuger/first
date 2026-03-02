@@ -1,0 +1,35 @@
+/* 最外层容器 */
+.custom-password {
+  background-color: #000 !important; /* 纯黑色背景 */
+  border: 2px solid #222 !important; /* 深色边框 */
+  border-radius: 8px !important; /* 大圆角 */
+  padding: 8px 12px !important; /* 内边距 */
+}
+
+/* 输入框本身（覆盖 ant-design 的默认输入框） */
+.custom-password .ant-input {
+  background-color: transparent !important; /* 透明背景，继承外层 */
+  color: #ccc !important; /* 输入文字颜色 */
+  border: none !important; /* 移除默认边框 */
+}
+
+/* 占位符样式 */
+.custom-password .ant-input::placeholder {
+  color: #666 !important; /* 浅灰色占位符 */
+}
+
+/* 密码切换图标 */
+.custom-password .ant-input-password-icon {
+  color: #666 !important; /* 图标默认颜色 */
+  font-size: 16px !important; /* 图标大小 */
+}
+
+/* 图标 hover 状态 */
+.custom-password .ant-input-password-icon:hover {
+  color: #1890ff !important; /* 高亮颜色 */
+}
+
+/* 聚焦时的样式（可选） */
+.custom-password:focus-within {
+  border-color: #1890ff !important; /* 聚焦时边框变色 */
+}

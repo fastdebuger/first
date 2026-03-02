@@ -1,0 +1,12 @@
+/* src/styles/tailwind.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 修复 Ant Design 与 Tailwind 的样式冲突 */
+.ant-btn {
+  @apply rounded-md;
+}
+.anticon svg {
+  vertical-align: baseline;
+}
